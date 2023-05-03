@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Réinitialisation de votre mot de passe</title>
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<a href="index.php">Retour à la page de connexion</a>
