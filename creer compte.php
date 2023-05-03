@@ -28,7 +28,6 @@
     </form>
 
     <?php
-    //Vérifie si le formulaire a été soumis
     	if(isset($_POST['envoyer'])){
 
     		//Récupère les données du formulaire
@@ -38,19 +37,20 @@
     		$mdp2=$_POST['mdp2'];
     		$verif=$_POST['verif'];
 
-    		//Traitement des données
-    		if($mdp!=$mdp2){
+    		//Traite les données
+    		if($mdp==$mdp2){
+                //Cas où les mots de passe sont différents
     			echo "Les deux mots de passe doivent être identiques";
     		}else if($verif!='Je ne suis pas un bot'){
+                //Cas où la vérification a échouée
     			echo "Vous êtes un bot";
     		}else{
-    			echo "Création réussie. Veuillez patienter...";
+                //Attend 3 secondes et renvoie vers la page d'accueil
     			sleep(3);
     			header("Location: accueil.php");
     			exit();
     		}
     	}
     ?>
-
 </body>
 </html>
