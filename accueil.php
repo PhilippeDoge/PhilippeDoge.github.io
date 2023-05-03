@@ -20,4 +20,4 @@
 	<h1>Ceci est une page d'accueil. Maintenance en cours...</h1>
 
 </body>
-</html> 
+</html>
