@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Créer votre compte</title>
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<a href="index.php">Retour à la page d'accueil</a>
