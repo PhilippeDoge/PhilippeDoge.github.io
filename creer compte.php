@@ -6,10 +6,11 @@
 	<link href="style.css" rel="stylesheet">
 </head>
 <body>
-	<a href="index.php">Retour à la page d'accueil</a>
 	<h1>Créez votre compte:</h1>
 	<form method="POST" action="">
-		<label for="pseudo">Saisissez votre pseudo:</label>
+	<a href="index.php">Retour à la page d'accueil</a>
+		
+	<label for="pseudo">Saisissez votre pseudo:</label>
             <input type="text" id="pseudo" name="pseudo" required><br>
 
       	<label for="mail">Saisissez votre adresse mail:</label>
@@ -41,12 +42,13 @@
     		//Traite les données
     		if($mdp==$mdp2){
                 //Cas où les mots de passe sont différents
-    			echo "<div class='verifbot'> Les deux mots de passe doivent être identiques </div>";
+    			echo "<div class='erreur'> Les deux mots de passe doivent être identiques </div>"; //j'ai rajouté des class pour mieux placer ces messages avec les css
     		}else if($verif!='Je ne suis pas un bot'){
                 //Cas où la vérification a échouée
-    			echo "<div class='verifbot'> Vous êtes un bot, ou alors vous savez pas trop écrire </div>";
+    			echo "<div class='erreur'> Vous êtes un bot, ou alors vous savez pas trop écrire </div>";
     		}else{
                 //Attend 3 secondes et renvoie vers la page d'accueil
+			echo "<div class='succes'>Création réussie. Veuillez patienter...</div>"; //Pareil que la class erreur. Tu feras gaffe ici, le texte ne s'affiche pas a cause du sleep
     			sleep(3);
     			header("Location: accueil.php");
     			exit();
