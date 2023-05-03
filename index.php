@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>projet de merde</title>
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<h1> Bienvenue sur la page de connexion</h1>
