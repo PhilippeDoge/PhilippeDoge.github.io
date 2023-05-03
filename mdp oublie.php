@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Mot de passe oublié?</title>
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<a href="index.php">Retour à la page de connexion</a>
