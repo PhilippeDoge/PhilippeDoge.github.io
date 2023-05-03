@@ -9,16 +9,17 @@
 	<h1> Bienvenue sur la page de connexion</h1>
 	<form method="POST" action="">
 		<label for="pseudo">Saisissez votre pseudo:</label>
-            <input type="text" id="pseudo" name="pseudo" required><br>
+		<input type="text" id="pseudo" name="pseudo" required><br>
 
-            <label for="mdp">Saisissez votre mot de passe:</label>
-            <input type="password" id="mdp" name="mdp" required><br>
+            	<label for="mdp">Saisissez votre mot de passe:</label>
+            	<input type="password" id="mdp" name="mdp" required><br>
 
-            <input type="submit" name="envoyer" value="Envoyer"> 
-    </form>
-    <a href="creer compte.php">Créer votre compte</a><br>
-    <a href="mdp oublie.php">Mot de passe oublié?</a>
-    <?php
+            	<input type="submit" name="envoyer" value="Envoyer">
+	    
+	        <a href="creer compte.php">Créer votre compte</a><br>
+   		<a href="mdp oublie.php">Mot de passe oublié?</a>
+   	 </form>
+   	 <?php
 		// Vérifie si le formulaire a été soumis
 		if (isset($_POST['envoyer'])) {
 
