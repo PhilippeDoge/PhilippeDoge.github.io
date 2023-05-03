@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Page d'accueil</title>
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<form method="POST" action="">
