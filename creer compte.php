@@ -40,10 +40,10 @@
     		//Traite les données
     		if($mdp==$mdp2){
                 //Cas où les mots de passe sont différents
-    			echo "Les deux mots de passe doivent être identiques";
+    			echo "<div class='verifbot'> Les deux mots de passe doivent être identiques </div>";
     		}else if($verif!='Je ne suis pas un bot'){
                 //Cas où la vérification a échouée
-    			echo "Vous êtes un bot";
+    			echo "<div class='verifbot'> Vous êtes un bot, ou alors vous savez pas trop écrire </div>";
     		}else{
                 //Attend 3 secondes et renvoie vers la page d'accueil
     			sleep(3);
