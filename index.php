@@ -34,7 +34,7 @@
     			exit();
     		}else{
         		// Si les identifiants sont incorrects, afficher un message d'erreur
-        		echo "Identifiant ou mot de passe incorrect.";
+        		echo "<div class='erreur'> Identifiant ou mot de passe incorrect. </div>";
     		}
 		}
 	?>
