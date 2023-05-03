@@ -26,13 +26,13 @@
 
 			if($mdp!=$mdp2){
 				//Cas où les mots de passe ne sont pas identiques
-				echo "Les deux mots de passe ne sont pas identiques.";
+				echo "<div class='erreur'>Les deux mots de passe ne sont pas identiques.</div>";
 			}else if($mdp=='1234'){
 				//Cas où le mot de passe est identique au précédent
-				echo "Le mot de passe doit être différent du précédent.";
+				echo "<div class='erreur'>Le mot de passe doit être différent du précédent.</div>";
 			}else{
 				//Change le mot de passe
-				echo "Mot de passe changé avec succès.";
+				echo "<div class='succes'> Mot de passe changé avec succès. </div>";
 			}
 		}
 	?>
