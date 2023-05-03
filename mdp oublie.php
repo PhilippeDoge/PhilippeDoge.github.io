@@ -27,7 +27,7 @@
 				exit();
 			}else{
 				//Renvoie à l'utilisateur que le mail renseigné n'existe pas
-				echo "L'adresse mail n'existe pas. Veuillez réessayer.";
+				echo "<div class='erreur' L'adresse mail n'existe pas. Veuillez réessayer. </div>";
 			}
 		}
 	?>
