@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>Créer votre compte</title>
-	<link href="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<h1>Créez votre compte:</h1>
 	<form method="POST" action="">
-	<a href="index.php">Retour à la page d'accueil</a>
-		
-	<label for="pseudo">Saisissez votre pseudo:</label>
+        <a href="index.php">Retour à la page d'accueil</a>
+
+		<label for="pseudo">Saisissez votre pseudo:</label>
             <input type="text" id="pseudo" name="pseudo" required><br>
 
       	<label for="mail">Saisissez votre adresse mail:</label>
@@ -30,6 +30,8 @@
     </form>
 
     <?php
+        require_once "connect.php";
+
     	if(isset($_POST['envoyer'])){
 
     		//Récupère les données du formulaire
@@ -40,20 +42,36 @@
     		$verif=$_POST['verif'];
 
     		//Traite les données
-    		if($mdp==$mdp2){
+    		if($mdp!=$mdp2){
                 //Cas où les mots de passe sont différents
-    			echo "<div class='erreur'> Les deux mots de passe doivent être identiques </div>"; //j'ai rajouté des class pour mieux placer ces messages avec les css
+    			echo "<div class='erreur'>Les deux mots de passe doivent être identiques</div>";
     		}else if($verif!='Je ne suis pas un bot'){
                 //Cas où la vérification a échouée
-    			echo "<div class='erreur'> Vous êtes un bot, ou alors vous savez pas trop écrire </div>";
+    			echo "<div class='erreur'>Vous êtes un bot</div>";
     		}else{
-                //Attend 3 secondes et renvoie vers la page d'accueil
-			echo "<div class='succes'>Création réussie. Veuillez patienter...</div>"; //Pareil que la class erreur. Tu feras gaffe ici, le texte ne s'affiche pas a cause du sleep
-    			sleep(3);
-    			header("Location: accueil.php");
-    			exit();
+
+                // Échappe les caractères spéciaux pour éviter les injections SQL
+                $pseudo=mysqli_real_escape_string($conn,$pseudo);
+                $mail=mysqli_real_escape_string($conn,$mail);
+                $mdp=mysqli_real_escape_string($conn,$mdp);
+
+                //Ajoute les informations dans la table
+                $sql="INSERT INTO user (pseudo, mail, mdp, admin) VALUES('$pseudo','$mail','$mdp','0');";
+
+                if(mysqli_query($conn,$sql)){
+                    //Attend 3 secondes et renvoie vers la page d'accueil
+    			    sleep(3);
+    			    header("Location:accueil.php");
+    			    exit();
+                }else{
+                    echo "Erreur: ".mysqli_error($conn);
+                }
+
+                //Ferme la connexion à la base de données
+                mysqli_close($conn);
     		}
     	}
     ?>
+
 </body>
 </html>
