@@ -43,8 +43,7 @@
     <h1>Posts from followed users</h1>
     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
         <div>
-            <p><?php echo $row['content']; ?></p>
-            <p>Posted by user <?php echo $row['pseudo']; ?></p>
+            <p>Posted by <?php echo $row['pseudo']; ?><?php echo $row['content']; ?></p>
         </div>
     <?php } ?>
 </body>
