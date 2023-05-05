@@ -20,6 +20,12 @@
 		$publications=$row['publications'];
 		$admin=$row['admin'];
 		*/
+	
+		 echo "<div class='profil'> 
+        	insere les données recuperées ici <br>
+        	une autre ici etc..<br>
+        	</div>";
+		//pense a aller check style ducoup
 	?>
 
 	<form method="POST" action="">
