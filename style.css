@@ -28,7 +28,15 @@ h1 {
     text-align: center;
 }
 
-  
+textarea {
+    width: 400px;
+    height: 600px;
+    resize: none;
+    overflow: auto;
+    font-size: 20px;
+    background-color: rgb(204, 199, 199) ;
+}
+
 label {
     font-size: 18px;
     font-weight: bold;
@@ -83,3 +91,42 @@ input[type="submit"] {
     padding: 10px;
     text-align: center;
 }
+
+.profil {
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    margin: 0 auto;
+    max-width: 1800px;
+    background-color: rgba(90, 90, 90, 0.8); /* Change to your desired background color and opacity */
+    border: 1px solid #000000; /* Add a border around the container */
+ }
+  
+  .container > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border-right: 1px solid #000000; /* Add a right border to each child div except the last one */
+ }
+  
+  .container > div:last-child {
+    border-right: none; /* Remove the right border from the last child div */
+ }
+  
+  .container > .middle {
+    flex: 2;
+ }
+
+  .creation{
+    all: initial; /* Reset all CSS properties to their initial values */
+ }
