@@ -12,23 +12,21 @@
 		$pseudo=$_GET['pseudo'];
 		echo "<a href=\"accueil.php?pseudo=".$pseudo."\">Retour en arrière</a>";
 
-		/*Récupère les données
+		//Récupère les données
 		$getinfo="SELECT * FROM profil WHERE pseudo='$pseudo';";
 		$data=mysqli_query($conn,$getinfo);
 		$row=mysqli_fetch_assoc($data);
 		$followers=$row['followers'];
 		$publications=$row['publications'];
 		$admin=$row['admin'];
-		*/
-	
-		 echo "<div class='profil'> 
-        	insere les données recuperées ici <br>
-        	une autre ici etc..<br>
-        	</div>";
-		//pense a aller check style ducoup
+
 	?>
 
 	<form method="POST" action="">
+
+		<p>Pseudo:<?php echo "$pseudo";?></p><br>
+		<p>Followers:<?php echo "$followers";?></p><br>
+		<p>Publications:<?php echo "$publications";?></p>
 
 		<input type="submit" name="mdp" value="Changer le mot de passe"> 
 	</form>
