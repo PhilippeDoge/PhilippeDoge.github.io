@@ -19,6 +19,7 @@
 		<input type="submit" name="envoyer" value="Envoyer">
 	</form>
 	<?php
+		session_start();
 		require_once "connect.php";
 
 		if(isset($_POST['envoyer'])){
@@ -32,13 +33,13 @@
     		$mail=mysqli_real_escape_string($conn,$mail);
 
     		//Traite les données
-			$select="SELECT pseudo,mail FROM user WHERE pseudo='$pseudo' AND mail='$mail';";
+			$select="SELECT * FROM user WHERE pseudo='$pseudo' AND mail='$mail';";
 
 			$result=mysqli_query($conn,$select);
 
 			//Si on trouve un résultat, renvoie vers la page de réinitialisation de mot de passe
 			if(mysqli_num_rows($result)>0){
-				header("Location:http://localhost/zebi/reset%20mdp.php?pseudo=$pseudo");
+				header("Location:reset mdp.php?pseudo=$pseudo");
 				exit();
 			}else{
 				//Sinon renvoie un message d'erreur
