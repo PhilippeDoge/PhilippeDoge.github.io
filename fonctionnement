@@ -1,0 +1,62 @@
+
+1) Page de connexion:
+-nom de fichier: index.php
+-deux saisies de texte: une pour le pseudo et l'autre pour le mot de passe de l'utilisateur
+-un bouton d'envoi qui vérifie si les données saisies sont correctes
+-deux liens: un pour créer un compte (cf 2) et l'autre pour réinitialiser son mot de passe en cas d'oubli
+
+2) Page de création de compte:
+-nom du fichier: creer compte.php
+-quatre saisies de texte pour les informations de l'utilisateur et une autre afin de vérifier si l'utilisateur est un robot ou non
+-un lien pour retourner à la page de connexion (cf 1)
+-vérifie si le pseudo a déjà été pris et si les deux mots de passe sont identiques
+-si toutes les conditions ont été vérifiées, ajoute une ligne avec les informations personnelles de l'utilisateur à la table user et crée une ligne dans la table profil
+-connecte directement l'utilisateur à la page d'accueil (cf 5)
+
+3) Page de mot de passe oublié:
+-nom du fichier: mdp oublie.php
+-deux saisies de texte: une pour le pseudo et une autre pour le mail de l'utilisateur
+-un lien pour retourner à la page de connexion (cf 1)
+-vérifie si les informations saisies sont présentes dans la table user
+-si oui, renvoie vers la page de réinitialisation (cf 4)
+
+4) Page de réinitialisation de mot de passe
+-nom du fichier: reset mdp.php
+-trois saisies de texte: une pour le pseudo afin de vérifier s'il est identique à celui de l'utilisateur, deux pour les nouveaux mots de passe
+-un lien pour retourner à la page de connexion (cf 1)
+-vérifie si le nouveau mot de passe est identique au précédent et si les deux mots de passe saisis sont identiques
+-si oui, change le mot de passe dans la table user
+
+5) Page d'accueil
+-nom du fichier: accueil.php
+-une barre de recherche + un bouton "rechercher": renvoie vers le profil de l'utilisateur recherché (cf 8) s'il est présent dans la base de données "user" sinon renvoie un message d'erreur
+=>utilise le programme présent dans le fichier "recherche.php"
+-un bouton "Déconnexion" qui renvoie vers la page de connexion (cf 1)
+-un bouton "Votre profil" qui renvoie vers le profil de l'utilisateur (cf 6)
+-une saisie de texte + un bouton "publier" afin d'envoyer un post (stocké dans la table "post")
+=>utilise le programme présent dans le fichier "creer poste.php"
+-un espace pour voir les posts des utilisateurs auquels l'utilisateur suit
+-un espace "pub" qui affiche des images/GIF
+=>utilise le programme présent dans le fichier "pub.php"
+
+6) Page de profil personnel
+-nom du fichier: profil perso.php
+-un lien pour retourner à la page d'accueil (cf 5)
+-un espace pour les posts publiés par l'utilisateur
+=>utilise le programme présent dans le fichier "voir poste.php"
+-un espace pour les informations personnelles
+-trois boutons: un pour changer le mot de passe de l'utilisateur(cf 7), un pour rendre le profil public et un autre pour rendre le profil privé
+
+7) Page de modification de mot de passe
+-nom du fichier: modif mdp.php
+-basé sur le même principe que "mdp oublie.php" (cf 3)
+
+8) Page de profil d'utilisateur
+-nom du fichier: profil.php
+-un lien pour retourner à la page d'accueil (cf 5)
+-un espace de posts publiés par l'utilisateur recherché
+=>utilise le programme présent dans le fichier "voir poste.php"
+-un espace avec les informations de l'utilisateur recherché: si son compte est privé et que l'utilisateur ne le suit pas, renvoie un message informateur au lieu des informations. Idem pour les posts
+-un bouton "Suivre" pour suivre l'utilisateur recherché: s'il est pas encore suivi, ajoute le lien de suivi dans la table "follower" et renvoie un message de succès, sinon renvoie un message d'erreur.
+
+
