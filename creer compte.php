@@ -30,19 +30,25 @@
     </form>
 
     <?php
+        session_start();
         require_once "connect.php";
 
     	if(isset($_POST['envoyer'])){
 
     		//Récupère les données du formulaire
-    		$pseudo=$_POST['pseudo'];
+    		$_SESSION['pseudo']=$_POST['pseudo'];
     		$mail=$_POST['mail'];
     		$mdp=$_POST['mdp'];
     		$mdp2=$_POST['mdp2'];
     		$verif=$_POST['verif'];
 
     		//Traite les données
-    		if($mdp!=$mdp2){
+            //Vérifie si le pseudo a déjà été pris
+            $getpseudo="SELECT * FROM user WHERE pseudo='".$_POST['pseudo']."';";
+            $result=mysqli_query($conn,$getpseudo);
+            if(mysqli_num_rows($result)>0){
+                echo "<div class='erreur'>Le pseudo a déjà été pris. Veuillez en choisir un autre.</div>";
+            }else if($mdp!=$mdp2){
                 //Cas où les mots de passe sont différents
     			echo "<div class='erreur'>Les deux mots de passe doivent être identiques</div>";
     		}else if($verif!='Je ne suis pas un bot'){
@@ -51,20 +57,27 @@
     		}else{
 
                 // Échappe les caractères spéciaux pour éviter les injections SQL
-                $pseudo=mysqli_real_escape_string($conn,$pseudo);
+                $_SESSION['pseudo']=mysqli_real_escape_string($conn,$_SESSION['pseudo']);
                 $mail=mysqli_real_escape_string($conn,$mail);
                 $mdp=mysqli_real_escape_string($conn,$mdp);
 
-                //Ajoute les informations dans la table
-                $sql="INSERT INTO user (pseudo, mail, mdp, admin) VALUES('$pseudo','$mail','$mdp','0');";
+                //Chiffre le mot de passe
+                $mdp=password_hash($mdp, PASSWORD_DEFAULT);
 
-                if(mysqli_query($conn,$sql)){
+                //Ajoute les informations dans la table user
+                $creation="INSERT INTO user(pseudo,mail,mdp,admin) VALUES('".$_POST['pseudo']."','$mail','$mdp','0');";
+
+                //Crée un profil pour l'utilisateur
+                $profil="INSERT INTO profil(pseudo) VALUES('".$_SESSION['pseudo']."')";
+
+                if(mysqli_query($conn,$creation)){
+                    mysqli_query($conn,$profil);
                     //Attend 3 secondes et renvoie vers la page d'accueil
     			    sleep(3);
     			    header("Location:accueil.php");
     			    exit();
                 }else{
-                    echo "Erreur: ".mysqli_error($conn);
+                    echo "Une erreur est survenue. Veuillez réessayer.";
                 }
 
                 //Ferme la connexion à la base de données
