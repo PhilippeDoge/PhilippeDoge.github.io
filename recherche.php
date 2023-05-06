@@ -7,11 +7,7 @@
 </head>
 <body>
 	<h1>Rechercher des utilisateurs</h1>
-	<?php
-	require_once "connect.php";
-		$pseudo=$_GET['pseudo'];
-		echo "<a href=\"accueil.php?pseudo=".$pseudo."\">Retour en arrière</a>";
-		?>
+	<a href="accueil.php">Retourner à la page d'accueil</a>
 	<form method="POST" action="">
 
 		<label for="recherche">Saisissez le nom de l'utilisateur que vous souhaitez rechercher:</label>
@@ -21,22 +17,28 @@
 	</form>
 
 	<?php
+		session_start();
 		require_once "connect.php";
 
 		 if(isset($_POST['rechercher'])){
-		 	$pseudo2=$_POST['pseudo'];
-
-		 	$select="SELECT * FROM profil WHERE pseudo='$pseudo2'";
-
-		 	$get=mysqli_query($conn,$select);
-
-		 	if(mysqli_num_rows($get)>0){
-		 		header("Location: profil.php?pseudo=$pseudo&pseudo2=$pseudo2");
+		 	$pseudo=$_POST['pseudo'];
+		 	if($pseudo==$_SESSION['pseudo']){
+		 		header("Location: profil perso.php");
 		 		exit();
 		 	}else{
-		 		echo "<div class='erreur'>Utilisateur introuvable.</div>";
+		 		//Récupère les informations dans la table user
+		 		$select="SELECT * FROM profil WHERE pseudo='$pseudo';";
+				$get=mysqli_query($conn,$select);
+
+		 		if(mysqli_num_rows($get)>0){
+		 			$_SESSION['pseudo_rec']=$pseudo;
+		 			header("Location: profil.php");
+		 			exit();
+		 		}else{
+		 			echo "<div class='erreur'>Utilisateur introuvable.</div>";
+		 		}
 		 	}
-		 }
+		}
 	?>
 
 </body>
