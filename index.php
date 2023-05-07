@@ -23,7 +23,7 @@
     </form>
 
     <?php
-	   	session_start();
+	    session_start();
    		require_once "connect.php";
 
 		// Vérifie si le formulaire a été soumis
@@ -44,10 +44,13 @@
 
     		//Si on trouve un résultat, on associe une id a la session et on renvoie vers la page d'accueil
     		if(mysqli_num_rows($result)>0){
-				$query = "SELECT id FROM user WHERE pseudo='$pseudo' AND mdp='$mdp'";
+				$query = "SELECT id, pseudo FROM user WHERE pseudo='$pseudo' AND mdp='$mdp'";
 				$result = mysqli_query($conn, $query);
 				$row = mysqli_fetch_assoc($result);
 				$_SESSION['id'] = $row['id'];
+				$_SESSION['pseudo'] = $row['pseudo'];
+				$_SESSION['admin'] = $row['admin'];
+
 
     			header("Location: accueil.php");
     			exit();
