@@ -1,5 +1,5 @@
 body {
-    background-image: url("background2.jpg");
+    background-image: url("image/background2.jpg");
     font-family: Comic Sans MS;
     background-repeat: no-repeat;
     background-size: cover;
@@ -146,3 +146,65 @@ input[type="submit"] {
     justify-content: center;
     align-items: center
 }
+
+.deco{
+    all: initial;
+    position: absolute;
+    top: 15px;
+    left: 35px;
+}
+
+.split-container {
+    display: flex;
+    height: 1000px;
+    background-color: rgba(90, 90, 90, 0.8);
+ }
+  
+.split-container .left {
+    width: 50%;
+    border-left: 1px solid black;
+    overflow-y: scroll;
+    max-height: 1000px; /* Set a maximum height */
+}
+  
+.split-container .right {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    border-right: 1px solid black;
+}
+
+.suivre {
+    all: initial
+}
+
+.suivre * {
+    font-size: 3em; /* Increase font size by 20% */
+}
+
+.post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form.delete {
+    all:initial;
+}
+
