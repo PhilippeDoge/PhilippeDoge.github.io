@@ -23,8 +23,9 @@
 		$admin=$row['admin'];
 		$prive=$row['prive'];
 	?>
-
-	<form method="POST" action="">
+	<div class='split-container'>
+	<div class='right'>
+	<form class="suivre" method="POST" action="">
 
 		<p>Pseudo:<?php echo $_SESSION['pseudo'];?></p>
 		<p>Followers:<?php echo "$followers";?></p>
@@ -65,7 +66,41 @@
 	
 
 		?>
+		</div>
 
+			<div class= "left">
+				<?php
+
+					$getpost = "SELECT posts.id, posts.content, user.pseudo, posts.user_id 
+					FROM posts 
+					INNER JOIN user 
+					ON posts.user_id = user.id 
+					WHERE user.pseudo='{$_SESSION['pseudo']}' 
+					ORDER BY posts.id DESC";
+					$result = mysqli_query($conn, $getpost);
+
+					while ($row = mysqli_fetch_assoc($result)) { 
+				?>
+				<div class='post'>
+					<p>Posted by <?php echo $row['pseudo']; ?> : <?php echo $row['content']; ?></p>
+					<form class="delete" method="post" action="">
+						<input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
+						<button class='delete' type="submit" name="delete_post">Supprimer</button>
+					</form>
+
+				</div>
+				<?php } ?>
+				<?php
+					if (isset($_POST['delete_post'])) {
+						$post_id = $_POST['post_id'];
+						$delete_post_query = "DELETE FROM posts WHERE id='$post_id'";
+						mysqli_query($conn, $delete_post_query);
+						echo "<div class='succes'>Le post a été supprimé avec succès.</div>";
+						header("Refresh:0");
+					}
+				?>
+			</div>
+		</div>
 
 
 
